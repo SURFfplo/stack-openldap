@@ -9,16 +9,14 @@ services:
     secrets:
       - openldap_admin_password
     environment:
+      SLAPD_USER: 'admin'
       SLAPD_PASSWORD: /run/secrets/openldap_admin_password
-      SLAPD_DOMAIN: 'surfuni.org'
-      SLAPD_ORGANIZATION: 'SURF University'
-      SLAPD_ADDITIONAL_MODULES: 'memberof' 
+      SLAPD_DOMAIN: 'dc=surfuni,dc=org'
     networks:
       - dev-net
-    volumes:
-      #- /var/docker/image-edutrac-sis/public_html/:/var/www/html/
-      - /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/conf:/etc/openldap
-      - /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/data:/var/lib/openldap
+    #volumes:
+      #- /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/conf:/etc/openldap
+      #- /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/data:/var/lib/openldap
     ports:
       - 389:389
 
