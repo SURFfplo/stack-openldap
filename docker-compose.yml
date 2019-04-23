@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  openldap: 
+    #image: openldap
+    image: 192.87.106.18:56001/openldap:0.1
+    deploy:
+      replicas: 1
+    secrets:
+      - openldap_admin_password
+    environment:
+      SLAPD_PASSWORD: /run/secrets/openldap_admin_password
+      SLAPD_DOMAIN: 'surfuni.org'
+      SLAPD_ORGANIZATION: 'SURF University'
+      SLAPD_ADDITIONAL_MODULES: 'memberof' 
+    networks:
+      - dev-net
+    volumes:
+      #- /var/docker/image-edutrac-sis/public_html/:/var/www/html/
+      - /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/conf:/etc/openldap
+      - /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/data:/var/lib/openldap
+    ports:
+      - 389:389
+
+secrets:
+  openldap_admin_password:
+    external: true
+
+networks:
+  dev-net:
+    external: true
