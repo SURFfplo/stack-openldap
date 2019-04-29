@@ -20,6 +20,40 @@ services:
     ports:
       - 389:389
 
+  ldaputils:
+    #image: ldaputils
+    image: 192.87.106.18:56001/ldaputils:0.1
+
+    # ENV WERKT NIET VANUIT COMPOSE 
+    # test: (levert niet de juiste $HOME): 
+    #command: ["sh", "-c", "env;echo $HOME"]
+
+    # dit zou handig zijn:
+    #command: ["sh", "-c", "sleep 10; env; ldapadd -D \"cn=$SLAPD_USER,$SLAPD_DOMAIN\" -w $SLAPD_PASSWORD -p $SLAPD_PORT -h $SLAPD_HOST -f /provision/provision.ldif"]
+
+    # for now, expose PASSWORD (don't!!!) 
+    # command: ["sh", "-c", "sleep 10; env; ldapadd -D \"cn=admin,dc=surfuni,dc=org\" -w PASSWORD -p 389 -h 194.171.175.198 -f /provision/provision.ldif"]
+
+    # solution: start script (works with env)
+    command: [ "sh", "-c", "sleep 10;/provision/provision.sh"]
+
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: none
+    secrets:
+      - openldap_admin_password
+    environment:
+      SLAPD_USER: 'admin'
+      SLAPD_PASSWORD: /run/secrets/openldap_admin_password
+      SLAPD_DOMAIN: 'dc=surfuni,dc=org'
+      SLAPD_HOST: '192.87.106.21'
+      SLAPD_PORT: '389'
+    networks:
+      - dev-net
+    volumes:
+      - $PWD/provision:/provision
+
 secrets:
   openldap_admin_password:
     external: true

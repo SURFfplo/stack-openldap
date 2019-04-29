@@ -1,0 +1,4 @@
+dn: cn=testuser,ou=Users,ou=FPLO,dc=surfuni,dc=org
+cn: testuser
+objectClass: person
+sn: "van FPLO"

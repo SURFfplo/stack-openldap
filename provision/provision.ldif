@@ -1,0 +1,64 @@
+# Entry 1: dc=surfuni,dc=org
+dn: dc=surfuni,dc=org
+objectclass: dcObject
+objectclass: organization
+o: SURF
+dc: surfuni
+
+# Entry 3: ou=FPLO,dc=surfuni,dc=org
+dn: ou=FPLO,dc=surfuni,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: FPLO
+
+#### LET OP: objectclass posixGroup bestaat niet!
+## Entry 4: cn=administrators,ou=FPLO,dc=surfuni,dc=org
+#dn: cn=administrators,ou=FPLO,dc=surfuni,dc=org
+#cn: administrators
+#gidnumber: 502
+#objectclass: posixGroup
+#objectclass: top
+
+## Entry 5: cn=medewerkers,ou=FPLO,dc=surfuni,dc=org
+#dn: cn=medewerkers,ou=FPLO,dc=surfuni,dc=org
+#cn: medewerkers
+#gidnumber: 500
+#objectclass: posixGroup
+#objectclass: top
+
+## Entry 6: cn=studenten,ou=FPLO,dc=surfuni,dc=org
+#dn: cn=studenten,ou=FPLO,dc=surfuni,dc=org
+#cn: studenten
+#gidnumber: 501
+#objectclass: posixGroup
+#objectclass: top
+
+# Entry 7: ou=Groups,ou=FPLO,dc=surfuni,dc=org
+dn: ou=Groups,ou=FPLO,dc=surfuni,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: Groups
+
+# Entry 8: ou=Users,ou=FPLO,dc=surfuni,dc=org
+dn: ou=Users,ou=FPLO,dc=surfuni,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: Users
+
+# Entry 9: ou=Grouphub,dc=surfuni,dc=org
+dn: ou=Grouphub,dc=surfuni,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: Grouphub
+
+# Entry 10: ou=AdHoc,ou=Grouphub,dc=surfuni,dc=org
+dn: ou=AdHoc,ou=Grouphub,dc=surfuni,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: AdHoc
+
+# Entry 11: ou=SemiFormal,ou=Grouphub,dc=surfuni,dc=org
+dn: ou=SemiFormal,ou=Grouphub,dc=surfuni,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: SemiFormal
