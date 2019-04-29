@@ -14,9 +14,11 @@ services:
       SLAPD_DOMAIN: 'dc=surfuni,dc=org'
     networks:
       - dev-net
-    #volumes:
-      #- /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/conf:/etc/openldap
-      #- /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/data:/var/lib/openldap
+    volumes:
+      #- $PWD/data/conf:/etc/openldap
+      #- $PWD/data/data:/var/lib/openldap
+      - /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/conf:/etc/openldap
+      - /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/data:/var/lib/openldap
     ports:
       - 389:389
 
