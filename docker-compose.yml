@@ -13,14 +13,14 @@ services:
       SLAPD_PASSWORD: /run/secrets/openldap_admin_password
       SLAPD_DOMAIN: 'dc=surfuni,dc=org'
     networks:
-      - dev-net
+      - $STACK_NETWORK
     volumes:
       #- $PWD/data/conf:/etc/openldap
       #- $PWD/data/data:/var/lib/openldap
-      - /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/conf:/etc/openldap
-      - /mnt/nfs/nfsdlo/$STACK_NETWORK/openldap-0.1/data:/var/lib/openldap
+      - /mnt/nfs/nfsdlo/$STACK_NETWORK/$STACK_SERVICE/$STACK_VERSION/conf:/etc/openldap
+      - /mnt/nfs/nfsdlo/$STACK_NETWORK/$STACK_SERVICE/$STACK_VERSION/data:/var/lib/openldap
     ports:
-      - 389:389
+      - $STACK_PORT:389
 
   ldaputils:
     #image: ldaputils
@@ -50,9 +50,9 @@ services:
       SLAPD_PASSWORD: /run/secrets/openldap_admin_password
       SLAPD_DOMAIN: 'dc=surfuni,dc=org'
       SLAPD_HOST: '192.87.106.21'
-      SLAPD_PORT: '389'
+      SLAPD_PORT: $STACK_PORT
     networks:
-      - dev-net
+      - $STACK_NETWORK
     volumes:
       - $PWD/provision:/provision
 
@@ -62,4 +62,8 @@ secrets:
 
 networks:
   dev-net:
+    external: true
+  test-net:
+    external: true
+  exp-net:
     external: true
