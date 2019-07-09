@@ -9,7 +9,7 @@ services:
       replicas: 1
       resources:
         limits:
-          cpu: '1.0'
+          cpus: '1.0'
           memory: 512M
       restart_policy:
         condition: any
@@ -51,7 +51,7 @@ services:
       replicas: 1
       resources:
         limits:
-          cpu: '0.5'
+          cpus: '0.5'
           memory: 128M
       restart_policy:
         condition: none
