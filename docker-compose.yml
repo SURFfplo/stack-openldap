@@ -44,7 +44,7 @@ services:
     # command: ["sh", "-c", "sleep 10; env; ldapadd -D \"cn=admin,dc=surfuni,dc=org\" -w PASSWORD -p 389 -h 194.171.175.198 -f /provision/provision.ldif"]
 
     # solution: start script (works with env)
-    command: [ "sh", "-c", "sleep 10;/provision/provision.sh"]
+    command: [ "sh", "-c", "sleep 100;/provision/provision.sh"]
 
     deploy:
       mode: replicated
